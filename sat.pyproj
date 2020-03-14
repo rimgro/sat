@@ -45,10 +45,12 @@
     <Compile Include="project_sat.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\Static\style.css" />
     <Content Include="app\Templates\index.html" />
     <Content Include="app\Templates\layout.html" />
     <Content Include="app\Templates\login.html" />
     <Content Include="app\Templates\register.html" />
+    <Content Include="app\Templates\user.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
+    <Folder Include="app\Static\" />
     <Folder Include="app\Templates\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
