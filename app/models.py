@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import login
 from hashlib import md5
-import dns.resolver
 
 
 class User(UserMixin, db.Model):
@@ -24,15 +23,9 @@ class User(UserMixin, db.Model):
         return '<User {} email {}>'.format(self.username,self.email) 
 
     def avatar(self, size):
-        email = self.email.lower()
-        domain = email.split("@")[1]
-        try:
-            answers = dns.resolver.query('_avatars._tcp.' + domain, 'SRV')
-            baseurl = 'http://' + str(answers[0].target) + '/avatar/'
-        except:
-            baseurl = "http://cdn.libravatar.org/avatar/"
-        hash = md5(email.strip().lower().encode("utf-8")).hexdigest()
-        return baseurl + hash +"?s="+str(size)+"&d=retro"
+            digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+            return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
+                    digest, size)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
