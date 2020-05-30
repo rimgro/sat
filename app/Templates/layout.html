@@ -2,20 +2,19 @@
 <html>
 <head>
     {% if title %}
-    <title>{{ title }} - Microblog</title>
+    <title>{{ title }} - Lookat</title>
     {% else %}
-    <title>Welcome to Microblog</title>
+    <title>Welcome to Lookat</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main">
         <div class="header">
-            <a href="{{ url_for('index') }}">Home</a> |
+            <a href="{{ url_for('index') }}" id="headin">LookAt</a> |
             <a href="{{ url_for('explore') }}">Explore</a> |
             {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a> |
+            <a href="{{ url_for('login') }}">Login</a>
             {% else %}
             <a href="{{ url_for('user', username=current_user.username) }}">Profile({{current_user.username}})</a> |
             <a href="{{ url_for('logout') }}">Logout</a>
@@ -35,6 +34,5 @@
         {% block content %}{% endblock %}
         <hr>
         <div>Copyright 2020</div>
-    </div>
 </body>
 </html>
